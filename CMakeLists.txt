@@ -1,1 +1,14 @@
-idf_component_register(SRCS "main.c" INCLUDE_DIRS ".")
+idf_component_register(
+    SRCS
+        "main/main.c"
+        "components/core/animals/animals.c"
+        "components/core/ui/ui_animals.c"
+        "components/core/utils/logging.c"
+        "components/storage/storage.c"
+    INCLUDE_DIRS
+        "main"
+        "components/core/animals"
+        "components/core/ui"
+        "components/core/utils"
+        "components/storage"
+)
