@@ -1,0 +1,15 @@
+# ESP-IDF build artifacts
+build/
+bootloader/
+*.o
+*.d
+*.bin
+*.elf
+*.map
+sdkconfig
+sdkconfig.old
+sdkconfig.*
+.vscode/
+.idea/
+__pycache__/
+*.pyc
