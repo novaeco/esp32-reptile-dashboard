@@ -13,3 +13,8 @@ sdkconfig.*
 .idea/
 __pycache__/
 *.pyc
+
+/tests/test_animals
+/tests/test_storage
+/tests/test_logging
+/tests/test_ui
