@@ -22,7 +22,11 @@ stored on the device for display.
    ```bash
    idf.py build
    ```
-   The ESP-IDF will download the LVGL component from the registry automatically during the first build.
+   Running `idf.py build` automatically downloads any dependencies declared in `idf_component.yml` during the first build.
+   If you prefer to install LVGL manually you can do so with:
+   ```bash
+   idf.py add-dependency "espressif/lvgl^8"
+   ```
 4. Flash the board and monitor the output:
    ```bash
    idf.py -p /dev/ttyUSB0 flash monitor
