@@ -2,5 +2,5 @@ version: "0.1.0"
 description: "ST7262 LCD driver"
 dependencies:
   idf: ">=5.0"
-  espressif/lvgl: "^8"
+  espressif/lvgl: "^9"
   utils: "*"

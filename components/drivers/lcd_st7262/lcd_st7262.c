@@ -3,34 +3,28 @@
 #include "lcd_st7262.h"
 #include "core/utils/logging.h"
 
-static lv_disp_draw_buf_t s_draw_buf;
-static lv_color_t s_buf1[LV_HOR_RES_MAX * 10];
-static lv_color_t s_buf2[LV_HOR_RES_MAX * 10];
+static lv_display_t *s_disp = NULL;
+static lv_color_t s_buf1[480 * 10];
+static lv_color_t s_buf2[480 * 10];
 
 // Flush callback used by LVGL. A real implementation would transmit the
 // pixel data contained in `color_p` for the area defined by `area`.
-static void st7262_flush(lv_disp_drv_t *drv, const lv_area_t *area, lv_color_t *color_p)
+static void st7262_flush(lv_display_t *disp, const lv_area_t *area, uint8_t *px_map)
 {
     (void)area;
-    (void)color_p;
+    (void)px_map;
 
     // Signal to LVGL that flushing is finished
-    lv_disp_flush_ready(drv);
+    lv_display_flush_ready(disp);
 }
 
 // Initialise the LCD controller and register the LVGL driver
 void lcd_st7262_init(void)
 {
-    lv_disp_draw_buf_init(&s_draw_buf, s_buf1, s_buf2, LV_HOR_RES_MAX * 10);
-
-    static lv_disp_drv_t disp_drv;
-    lv_disp_drv_init(&disp_drv);
-    disp_drv.flush_cb = st7262_flush;
-    disp_drv.draw_buf = &s_draw_buf;
-    disp_drv.hor_res = 480;
-    disp_drv.ver_res = 320;
-
-    lv_disp_drv_register(&disp_drv);
+    s_disp = lv_display_create(480, 320);
+    lv_display_set_buffers(s_disp, s_buf1, s_buf2, sizeof(s_buf1),
+                           LV_DISPLAY_RENDER_MODE_PARTIAL);
+    lv_display_set_flush_cb(s_disp, st7262_flush);
 
     log_info("ST7262", "display driver initialised");
 }
