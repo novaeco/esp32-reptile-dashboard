@@ -1,11 +1,19 @@
 CC ?= gcc
-CFLAGS = -I../components/core/animals -I../components/storage
+CFLAGS = -I.. -I../components -I../components/core/animals -I../components/storage \
+         -I../components/core/utils -I../components/core/ui -Istubs
 
-TESTS = test_animals test_storage
+TESTS = test_animals test_storage test_logging test_ui
+
+COMMON_SRCS = ../components/core/animals/animals.c \
+              ../components/storage/storage.c \
+              ../components/core/utils/logging.c \
+              ../components/core/ui/ui_animals.c \
+              stubs/lvgl.c \
+              stubs/esp_log.c
 
 all: $(TESTS)
 
-%: %.c ../components/core/animals/animals.c ../components/storage/storage.c
+%: %.c $(COMMON_SRCS)
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
