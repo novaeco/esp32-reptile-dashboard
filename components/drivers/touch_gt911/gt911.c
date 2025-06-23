@@ -3,6 +3,8 @@
 #include "gt911.h"
 #include "core/utils/logging.h"
 #include "driver/i2c.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
 // Default I2C address for the controller
 #define GT911_ADDR 0x5D
