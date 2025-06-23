@@ -22,6 +22,7 @@ stored on the device for display.
    ```bash
    idf.py build
    ```
+   The ESP-IDF will download the LVGL component from the registry automatically during the first build.
 4. Flash the board and monitor the output:
    ```bash
    idf.py -p /dev/ttyUSB0 flash monitor

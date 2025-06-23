@@ -3,4 +3,4 @@ description: "UI helpers for animals"
 dependencies:
   idf: ">=5.0"
   animals: "*"
-  lvgl: "*"
+  espressif/lvgl: "^8"
