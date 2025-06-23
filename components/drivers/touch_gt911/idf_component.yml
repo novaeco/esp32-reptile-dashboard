@@ -4,4 +4,4 @@ dependencies:
   idf: ">=5.0"
   driver: "*"
   utils: "*"
-  espressif/lvgl: "^8"
+  espressif/lvgl: "^9"

@@ -25,7 +25,7 @@ stored on the device for display.
    Running `idf.py build` automatically downloads any dependencies declared in `idf_component.yml` during the first build.
    If you prefer to install LVGL manually you can do so with:
    ```bash
-   idf.py add-dependency "espressif/lvgl^8"
+   idf.py add-dependency "espressif/lvgl^9"
    ```
 4. Flash the board and monitor the output:
    ```bash

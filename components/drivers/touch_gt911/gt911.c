@@ -57,9 +57,9 @@ void gt911_init(void)
     }
 }
 
-void gt911_read(lv_indev_drv_t *drv, lv_indev_data_t *data)
+void gt911_read(lv_indev_t *indev, lv_indev_data_t *data)
 {
-    (void)drv;
+    (void)indev;
 
     uint8_t reg[2] = {0x81, 0x4E};
     uint8_t buf[5] = {0};

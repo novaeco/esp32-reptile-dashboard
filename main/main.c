@@ -26,11 +26,9 @@ void app_main(void)
     gt911_init();
 
     log_info("MAIN", "registering input device");
-    static lv_indev_drv_t indev_drv;
-    lv_indev_drv_init(&indev_drv);
-    indev_drv.type = LV_INDEV_TYPE_POINTER;
-    indev_drv.read_cb = gt911_read;
-    lv_indev_drv_register(&indev_drv);
+    lv_indev_t *indev = lv_indev_create();
+    lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER);
+    lv_indev_set_read_cb(indev, gt911_read);
 
     log_info("MAIN", "creating animal screen");
     lv_obj_t *screen = ui_animals_create();
