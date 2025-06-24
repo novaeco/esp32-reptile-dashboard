@@ -8,6 +8,7 @@ set(EXTRA_COMPONENT_DIRS
     "${CMAKE_CURRENT_LIST_DIR}/components/storage"
     "${CMAKE_CURRENT_LIST_DIR}/components/drivers/lcd_st7262"
     "${CMAKE_CURRENT_LIST_DIR}/components/drivers/touch_gt911"
+    "${CMAKE_CURRENT_LIST_DIR}/components/lvgl"
 )
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
