@@ -1,16 +1,19 @@
 [
   {
     "name": "Leo",
+    "age": 2,
     "species": "Leopard Gecko",
     "habitat": "Desert Terrarium"
   },
   {
     "name": "Shelly",
+    "age": 8,
     "species": "Russian Tortoise",
     "habitat": "Dry Grassland Enclosure"
   },
   {
     "name": "Fang",
+    "age": 4,
     "species": "Corn Snake",
     "habitat": "Tropical Vivarium"
   }
