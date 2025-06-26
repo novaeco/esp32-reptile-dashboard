@@ -1,7 +1,10 @@
 // Simple in-memory CRUD implementation for animal entries
 
 #include "animals.h"
+#include "storage/storage.h"
+#include "core/utils/logging.h"
 #include <string.h>
+#include "cJSON.h"
 
 #define MAX_ANIMALS 10
 
@@ -59,5 +62,52 @@ bool animals_delete(size_t index)
 size_t animals_get_count(void)
 {
     return s_count;
+}
+
+bool animals_load_from_json(void)
+{
+    char buffer[1024];
+    if (!storage_load("/animals.json", buffer, sizeof(buffer))) {
+        log_error("ANIMALS", "failed to load /animals.json");
+        return false;
+    }
+
+    cJSON *root = cJSON_Parse(buffer);
+    if (!root || !cJSON_IsArray(root)) {
+        log_error("ANIMALS", "invalid JSON format");
+        cJSON_Delete(root);
+        return false;
+    }
+
+    animals_init();
+
+    size_t count = 0;
+    cJSON *item = NULL;
+    cJSON_ArrayForEach(item, root) {
+        if (count >= MAX_ANIMALS) {
+            break;
+        }
+        if (!cJSON_IsObject(item)) {
+            continue;
+        }
+
+        cJSON *name = cJSON_GetObjectItem(item, "name");
+        cJSON *age = cJSON_GetObjectItem(item, "age");
+        if (!cJSON_IsString(name)) {
+            continue;
+        }
+
+        animal_t a;
+        memset(&a, 0, sizeof(a));
+        strncpy(a.name, name->valuestring, sizeof(a.name) - 1);
+        if (cJSON_IsNumber(age)) {
+            a.age = age->valueint;
+        }
+        animals_create(&a);
+        count++;
+    }
+
+    cJSON_Delete(root);
+    return true;
 }
 

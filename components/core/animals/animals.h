@@ -26,3 +26,7 @@ bool animals_delete(size_t index);
 
 // Return the current number of stored animals.
 size_t animals_get_count(void);
+
+// Load animal data from /animals.json using the storage component.
+// Returns true on success.
+bool animals_load_from_json(void);

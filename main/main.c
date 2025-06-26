@@ -19,6 +19,9 @@ void app_main(void)
     log_info("MAIN", "initialising storage");
     storage_init();
 
+    log_info("MAIN", "loading animal data");
+    animals_load_from_json();
+
     log_info("MAIN", "initialising display");
     lcd_st7262_init();
 
