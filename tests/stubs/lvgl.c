@@ -45,3 +45,14 @@ void lv_label_set_text_fmt(lv_obj_t *label, const char *fmt, ...) {
     vsnprintf(label->text, sizeof(label->text), fmt, args);
     va_end(args);
 }
+
+void lv_obj_add_event_cb(lv_obj_t *obj, lv_event_cb_t cb) {
+    obj->event_cb = cb;
+}
+
+void lv_event_send(lv_obj_t *obj) {
+    if (obj && obj->event_cb) {
+        lv_event_t e = { .target = obj };
+        obj->event_cb(&e);
+    }
+}
