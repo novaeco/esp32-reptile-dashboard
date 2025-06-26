@@ -56,6 +56,8 @@ Both programs print a confirmation message when the tests pass.
 ## Sample data file
 
 The `data/animals.json` file contains example reptile entries in JSON format.
+Each entry now provides a `name` and an `age` field that `animals_load_from_json()`
+expects when populating the list.
 After calling `storage_init()` the application can populate the in‑memory list
 by invoking `animals_load_from_json()`, which internally uses
 `storage_load("/animals.json", ...)` and parses the JSON data.
