@@ -8,11 +8,11 @@
 // - SPI CLK  must be connected to the SCL pin.
 // - The CS pin should be driven low for the duration of a transfer.
 // - DC toggles between command (low) and data (high) bytes.
-// - A reset line is recommended and should be asserted low for a few
-//   milliseconds during startup.
+// - A reset line should be asserted low for a few milliseconds during
+//   startup.
 //
-// Only a minimal stub implementation is provided for unit testing and
-// demonstration purposes.
+// Pin numbers can be configured via menuconfig under the "ST7262 LCD"
+// submenu.
 
 #include "lvgl.h"
 
