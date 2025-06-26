@@ -56,9 +56,9 @@ Both programs print a confirmation message when the tests pass.
 ## Sample data file
 
 The `data/animals.json` file contains example reptile entries in JSON format.
-At runtime the application can load this file using `storage_load("/animals.json", ...)`
-after calling `storage_init()`. The JSON is then parsed and used to populate the
-in‑memory list managed by `animals.c`.
+After calling `storage_init()` the application can populate the in‑memory list
+by invoking `animals_load_from_json()`, which internally uses
+`storage_load("/animals.json", ...)` and parses the JSON data.
 
 ## Wiring
 
